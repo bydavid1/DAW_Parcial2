@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gestión de Alumnos y Materias</title>    
+    </h:head>
+    <h:body>
+        <!-- Sección de Alumnos -->
+        <p:card style="margin: 5% 5% 5% 5%">
+            <f:facet name="title">
+                Formulario de Alumno
+            </f:facet>
+            <f:view>
+                <h:form id="alumnoForm">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nombre:" />
+                        <p:inputText value="#{indexController.alumno.nombre}" />
+
+                        <h:outputLabel value="Carnet:" />
+                        <p:inputText value="#{indexController.alumno.carnet}" />
+                    </h:panelGrid>
+                    <p:commandButton value="Guardar" actionListener="#{indexController.guardarAlumno}" update=":tablaAlumnos, :alumnoForm" />
+                </h:form>
+            </f:view>
+        </p:card>
+
+        <p:card style="margin: 5% 5% 5% 5%">
+            <h1>Listado de Alumnos</h1>
+            <h:form id="tablaAlumnos">
+                <p:dataTable value="#{indexController.alumnosList}" var="alumno" rows="5" paginator="true" paginatorPosition="bottom">
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{alumno.nombre}" />
+                    </p:column>
+                    <p:column headerText="Carnet">
+                        <h:outputText value="#{alumno.carnet}" />
+                    </p:column>
+                    <p:column headerText="Acciones">
+                        <p:commandButton value="Editar" actionListener="#{indexController.LlenarFormEditar(alumno)}" update=":alumnoForm" icon="pi pi-pencil" />
+                        <p:commandButton value="Eliminar" actionListener="#{indexController.eliminarAlumno(alumno)}" update=":tablaAlumnos" icon="pi pi-trash" style="background-color: red">
+                            <p:confirm header="Confirmar" message="¿Realmente desea eliminar al alumno: #{alumno.nombre}?" icon="pi pi-info-circle" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                    <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" />
+                </p:confirmDialog>
+            </h:form>
+        </p:card>
+
+        <!-- Sección de Materias -->
+        <p:card style="margin: 5% 5% 5% 5%">
+            <f:facet name="title">
+                Formulario de Materia
+            </f:facet>
+            <f:view>
+                <h:form id="materiaForm">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nombre:" />
+                        <p:inputText value="#{materiaController.materia.nombre}" />
+
+                        <h:outputLabel value="Descripción:" />
+                        <p:inputText value="#{materiaController.materia.descripcion}" />
+
+                        <h:outputLabel value="Código:" />
+                        <p:inputText value="#{materiaController.materia.codigo}" />
+                    </h:panelGrid>
+                    <p:commandButton value="Guardar" actionListener="#{materiaController.guardarMateria}" update=":tablaMaterias, :materiaForm" />
+                </h:form>
+            </f:view>
+        </p:card>
+
+        <p:card style="margin: 5% 5% 5% 5%">
+            <h1>Listado de Materias</h1>
+            <h:form id="tablaMaterias">
+                <p:dataTable value="#{materiaController.materiasList}" var="materia" rows="5" paginator="true" paginatorPosition="bottom">
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{materia.nombre}" />
+                    </p:column>
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{materia.descripcion}" />
+                    </p:column>
+                    <p:column headerText="Código">
+                        <h:outputText value="#{materia.codigo}" />
+                    </p:column>
+                    <p:column headerText="Acciones">
+                        <p:commandButton value="Editar" actionListener="#{materiaController.llenarFormEditar(materia)}" update=":materiaForm" icon="pi pi-pencil" />
+                        <p:commandButton value="Eliminar" actionListener="#{materiaController.eliminarMateria(materia)}" update=":tablaMaterias" icon="pi pi-trash" style="background-color: red">
+                            <p:confirm header="Confirmar" message="¿Realmente desea eliminar la materia: #{materia.nombre}?" icon="pi pi-info-circle" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                    <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" />
+                </p:confirmDialog>
+            </h:form>
+        </p:card>
+    </h:body>
+</html>     

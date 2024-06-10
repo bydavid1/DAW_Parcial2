@@ -1,0 +1,5 @@
+com\mycompany\webapp\resources\App.class
+com\mycompany\webapp\resources\Recurso.class
+com\mycompany\webapp\negocio\DataService.class
+com\mycompany\webapp\entidades\Alumno.class
+com\mycompany\webapp\controladores\IndexController.class

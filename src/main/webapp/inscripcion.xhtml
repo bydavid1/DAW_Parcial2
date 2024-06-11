@@ -17,29 +17,29 @@
                     </f:facet>
                     <f:view>
                         <h:panelGrid columns="2">
-                            <h:outputLabel value="Alumno:" />
-                            <p:selectOneMenu value="#{inscripcionController.inscripcion.alumno}">
+                            <h:outputLabel value="Alumno:" style="margin-bottom: 10px" />
+                            <p:selectOneMenu value="#{inscripcionController.inscripcion.alumnoId}" style="margin-left: 10px">
                                 <f:selectItems value="#{inscripcionController.alumnosList}" var="alumno"
-                                    itemLabel="#{alumno.nombre}" itemValue="#{alumno}" />
+                                    itemLabel="#{alumno.nombre}" itemValue="#{alumno.id}" />
                             </p:selectOneMenu>
 
-                            <h:outputLabel value="Materia:" />
-                            <p:selectOneMenu value="#{inscripcionController.inscripcion.materia}">
+                            <h:outputLabel value="Materia:" style="margin-bottom: 10px" />
+                            <p:selectOneMenu value="#{inscripcionController.inscripcion.materiaId}" style="margin-left: 10px">
                                 <f:selectItems value="#{inscripcionController.materiasList}" var="materia"
-                                    itemLabel="#{materia.nombre}" itemValue="#{materia}" />
+                                    itemLabel="#{materia.nombre}" itemValue="#{materia.id}" />
                             </p:selectOneMenu>
 
-                            <h:outputLabel value="Año:" />
-                            <p:inputText value="#{inscripcionController.inscripcion.anio}" />
+                            <h:outputLabel value="Año:" style="margin-bottom: 10px" />
+                            <p:inputText value="#{inscripcionController.inscripcion.anio}" style="margin-left: 10px"/>
 
-                            <h:outputLabel value="Ciclo:" />
-                            <p:inputText value="#{inscripcionController.inscripcion.ciclo}" />
+                            <h:outputLabel value="Ciclo:" style="margin-bottom: 10px" />
+                            <p:inputText value="#{inscripcionController.inscripcion.ciclo}" style="margin-left: 10px"/>
 
-                            <h:outputLabel value="Fecha:" />
-                            <p:calendar value="#{inscripcionController.inscripcion.fecha}" />
+                            <h:outputLabel value="Fecha:" style="margin-bottom: 10px" />
+                            <p:calendar value="#{inscripcionController.inscripcion.fecha}" style="margin-left: 10px"/>
                         </h:panelGrid>
                         <p:commandButton value="Guardar" actionListener="#{inscripcionController.guardarInscripcion}"
-                            update="inscripcionForm, tablaInscripciones" />
+                            update="inscripcionForm, tablaInscripciones" style="margin-top: 20px"/>
                     </f:view>
                 </p:card>
             </h:form>

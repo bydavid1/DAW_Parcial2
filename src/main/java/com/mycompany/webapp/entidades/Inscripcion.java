@@ -15,12 +15,18 @@ public class Inscripcion implements Serializable {
     @Column(name = "id")
     private Integer id;
     
+    @Column(name = "alumno_id", nullable = false)
+    private Integer alumnoId;
+    
+    @Column(name = "materia_id", nullable = false)
+    private Integer materiaId;
+    
     @ManyToOne
-    @JoinColumn(name = "alumno_id", nullable = false)
+    @JoinColumn(name = "alumno_id", insertable = false, updatable = false)
     private Alumno alumno;
     
     @ManyToOne
-    @JoinColumn(name = "materia_id", nullable = false)
+    @JoinColumn(name = "materia_id", insertable = false, updatable = false)
     private Materia materia;
     
     @Column(name = "anio", nullable = false)
@@ -40,6 +46,22 @@ public class Inscripcion implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getAlumnoId() {
+        return alumnoId;
+    }
+
+    public void setAlumnoId(Integer alumnoId) {
+        this.alumnoId = alumnoId;
+    }
+
+    public Integer getMateriaId() {
+        return materiaId;
+    }
+
+    public void setMateriaId(Integer materiaId) {
+        this.materiaId = materiaId;
     }
 
     public Alumno getAlumno() {
@@ -106,16 +128,16 @@ public class Inscripcion implements Serializable {
 
     @Override
     public String toString() {
-        return "Inscripcion{" + "id=" + id + ", alumno=" + alumno + ", materia=" + materia + ", anio=" + anio + ", ciclo=" + ciclo + ", fecha=" + fecha + '}';
+        return "Inscripcion{" + "id=" + id + ", alumnoId=" + alumnoId + ", materiaId=" + materiaId + ", anio=" + anio + ", ciclo=" + ciclo + ", fecha=" + fecha + '}';
     }
 
     public Inscripcion() {
     }
 
-    public Inscripcion(Integer id, Alumno alumno, Materia materia, Integer anio, Integer ciclo, Date fecha) {
+    public Inscripcion(Integer id, Integer alumnoId, Integer materiaId, Integer anio, Integer ciclo, Date fecha) {
         this.id = id;
-        this.alumno = alumno;
-        this.materia = materia;
+        this.alumnoId = alumnoId;
+        this.materiaId = materiaId;
         this.anio = anio;
         this.ciclo = ciclo;
         this.fecha = fecha;

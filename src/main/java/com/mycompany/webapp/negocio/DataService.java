@@ -65,17 +65,7 @@ public class DataService {
 
     // Metodos para inscripcion
     @Transactional
-    public void inscribirAlumnoMateria(Alumno alumno, Materia materia, int anio, int ciclo) {
-        alumno = entityManager.find(Alumno.class, alumno.getId());
-        materia = entityManager.find(Materia.class, materia.getId());
-        
-        Inscripcion inscripcion = new Inscripcion();
-        inscripcion.setAlumno(alumno);
-        inscripcion.setMateria(materia);
-        inscripcion.setAnio(anio);
-        inscripcion.setCiclo(ciclo);
-        inscripcion.setFecha(new java.util.Date());
-
+    public void saveInscripcion(Inscripcion inscripcion) {
         entityManager.persist(inscripcion);
     }
 

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gestión de Inscripciones</title>    
+    </h:head>
+    <h:body>
+        <h:form id="inscripcionForm">
+            <p:card style="margin: 5%">
+                <f:facet name="title">
+                    Formulario de Inscripción
+                </f:facet>
+                <f:view>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Alumno:" />
+                        <p:selectOneMenu value="#{inscripcionController.inscripcion.alumno}">
+                            <f:selectItems value="#{inscripcionController.alumnosList}" var="alumno" itemLabel="#{alumno.nombre}" itemValue="#{alumno}" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="Materia:" />
+                        <p:selectOneMenu value="#{inscripcionController.inscripcion.materia}">
+                            <f:selectItems value="#{inscripcionController.materiasList}" var="materia" itemLabel="#{materia.nombre}" itemValue="#{materia}" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="Año:" />
+                        <p:inputText value="#{inscripcionController.inscripcion.anio}" />
+
+                        <h:outputLabel value="Ciclo:" />
+                        <p:inputText value="#{inscripcionController.inscripcion.ciclo}" />
+
+                        <h:outputLabel value="Fecha:" />
+                        <p:calendar value="#{inscripcionController.inscripcion.fecha}" />
+                    </h:panelGrid>
+                    <p:commandButton value="Guardar" actionListener="#{inscripcionController.guardarInscripcion}" update="inscripcionForm, tablaInscripciones" />
+                </f:view>
+            </p:card>
+        </h:form>
+
+        <h:form id="tablaInscripciones">
+            <p:card style="margin: 5%">
+                <h1>Listado de Inscripciones</h1>
+                <p:dataTable value="#{inscripcionController.inscripcionesList}" var="inscripcion" rows="5" paginator="true" paginatorPosition="bottom">
+                    <p:column headerText="Alumno">
+                        <h:outputText value="#{inscripcion.alumno.nombre}" />
+                    </p:column>
+                    <p:column headerText="Materia">
+                        <h:outputText value="#{inscripcion.materia.nombre}" />
+                    </p:column>
+                    <p:column headerText="Año">
+                        <h:outputText value="#{inscripcion.anio}" />
+                    </p:column>
+                    <p:column headerText="Ciclo">
+                        <h:outputText value="#{inscripcion.ciclo}" />
+                    </p:column>
+                    <p:column headerText="Fecha">
+                        <h:outputText value="#{inscripcion.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Acciones">
+                        <p:commandButton value="Eliminar" actionListener="#{inscripcionController.eliminarInscripcion(inscripcion)}" update="tablaInscripciones" icon="pi pi-trash" style="background-color: red">
+                            <p:confirm header="Confirmar" message="¿Realmente desea eliminar la inscripcion?" icon="pi pi-info-circle" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                    <p:commandButton value="Sí" type="button" styleClass="ui-confirmdialog-yes" />
+                </p:confirmDialog>
+            </p:card>
+        </h:form>
+    </h:body>
+</html>

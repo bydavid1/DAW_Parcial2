@@ -13,13 +13,9 @@ import jakarta.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author MINEDUCYT
- */
 @Named
 @RequestScoped
-public class IndexController {
+public class AlumnoController {
     
     private List<Alumno> alumnosList = new ArrayList<>();
     
